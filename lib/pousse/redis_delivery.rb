@@ -8,12 +8,13 @@ module Pousse
 
     def deliver!(mail)
       puts "DELIVER ??"
+      puts mail.to
+      puts mail.body
       begin
-        redis = Redis.new
+        redis = Redis.new @redis_config
         mail.to.each do |to|
           redis.publish(to, mail.body.decoded)
         end
-        @redis_config
       rescue Exception => e
         #TODO: Use a real logguer ??
         puts "NOTIFICATION NOT DELIVERED: #{e.message}"

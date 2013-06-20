@@ -35,7 +35,18 @@ describe Pousse do
         .with('everybody',  'alert("Générale !");')
       mailer.send_alert.deliver
     end
+  end
 
+  describe "#js" do
+    it 'Should return some javascript' do
+      puts Pousse::js('test', 'asdasd', 'adasasd')
+    end
+  end
+
+  describe "#html" do
+    it 'Should return some javascript' do
+      puts Pousse::html('["test"]', 'http://agorize-notification.herokuapp.com:80', 'adasasd')
+    end
   end
 
 
