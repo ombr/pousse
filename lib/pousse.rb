@@ -4,6 +4,7 @@ require "pousse/version"
 require 'pousse/configuration'
 require 'pousse/redis_delivery'
 require 'pousse/mailer'
+require 'pousse/crypt'
 
 module Pousse
   TEMPLATE_SOURCE = File.join(
@@ -28,8 +29,9 @@ module Pousse
     def js(channels, server, secret = nil)
       require 'erb'
       require 'json'
-      token = channels.to_json
-      iv = rand.to_s
+      secret ||= configuration.secret
+      raise 'You should configure your secret or specify it.' if secret == nil
+      token, iv = Pousse::Crypt.encrypt(channels.to_json, secret)
       return ERB.new(File.read(TEMPLATE_MIN)).result(binding)
     end
 

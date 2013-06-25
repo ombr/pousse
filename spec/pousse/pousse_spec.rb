@@ -38,7 +38,8 @@ describe Pousse do
   end
 
   describe "#js" do
-    it 'Should return some javascript' do
+
+    it 'returns some javascript' do
       require 'v8'
       script = Pousse::js(['test'], 'http://your-poussette-server.com', 'your secret')
       cxt = V8::Context.new
@@ -46,6 +47,34 @@ describe Pousse do
         # Javascript syntax should be valid.
         cxt.eval( "test = function(){ #{script} }")
       }.to_not raise_exception
+    end
+
+    context 'with global configuration' do
+
+      it 'returns some javascript' do
+        Pousse.configure do |config|
+          config.secret = 'your secret'
+        end
+        require 'v8'
+        script = Pousse::js(['test'], 'http://your-poussette-server.com')
+        cxt = V8::Context.new
+        expect {
+          # Javascript syntax should be valid.
+          cxt.eval( "test = function(){ #{script} }")
+        }.to_not raise_exception
+      end
+    end
+
+    context "without configuration" do
+      it 'raise an exception' do
+        Pousse.configure do |config|
+          config.secret = nil
+        end
+        expect {
+          Pousse::js(['test'], 'http://your-poussette-server.com')
+        }.to raise_exception
+      end
+
     end
   end
 
