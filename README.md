@@ -54,6 +54,7 @@ heroku ...
 ### TODO :
 
 - Should add some logging when redis is not available.
+- Should add some spec for the configuration.
 
 ## Contributing
 
