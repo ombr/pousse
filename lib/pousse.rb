@@ -18,6 +18,7 @@ module Pousse
 
     attr_accessor :configuration
 
+
     def configuration
       @configuration ||= Configuration.new
     end

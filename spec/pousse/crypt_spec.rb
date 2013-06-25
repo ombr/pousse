@@ -6,20 +6,27 @@ describe Pousse::Crypt do
 
     describe '#encrypt' do
 
-      it 'encrypt a string with a specific iv' do
-        source = 'Here is some data for the coding'
+
+      it 'encrypt a string' do
+        source = '["test"]'
         key = 'superKey'
         iv = '1234567890123456'
-        res, iv_res = Pousse::Crypt::encrypt(source, key, iv)
-        res.should == "rShSmqpB/ILClbRl82HqFFtoj6zEKU1FSqG0uykYFE2yPsVAquddl8981JEfvZwp"
-        iv_res.should == iv
+        res, iv = Pousse::Crypt::encrypt(source, key, iv)
+        Pousse::Crypt::decrypt(res, key, iv).should == source
+      end
+
+      it 'encrypt a string' do
+        source = '["test", "asdasd"]'
+        key = 'poussette'
+        res, iv = Pousse::Crypt::encrypt(source, key)
+        Pousse::Crypt::decrypt(res, key, iv).should == source
       end
 
       it 'encrypt and decrypt a string' do
         source = 'Here is some data for the coding'
         key = 'superKey'
         enc, iv = Pousse::Crypt::encrypt(source, key)
-        res, iv = Pousse::Crypt::decrypt(enc, key, iv)
+        res = Pousse::Crypt::decrypt(enc, key, iv)
         res.should == source
       end
     end

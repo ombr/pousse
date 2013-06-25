@@ -9,21 +9,25 @@ module Pousse
     def self.decrypt(data, key, iv)
       aes = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
       aes.decrypt
+      aes.reset
       aes.key = Digest::SHA256.digest(key)
-      aes.iv = iv
+      aes.iv = Base64.strict_decode64(iv)
 
-      res = aes.update(Base64.decode64(data))
+      data = Base64.strict_decode64(data)
+      return aes.update(data) + aes.final
     end
 
     def self.encrypt(data, key, iv = nil)
-      iv ||= Base64.encode64(rand.to_s).gsub("\n",'')
       aes = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
+      iv ||= aes.random_iv
       aes.encrypt
+      aes.reset
       aes.key = Digest::SHA256.digest(key)
       aes.iv  = iv
 
-      res = Base64.encode64( aes.update(data) << aes.final ).gsub("\n", '')
-      return [res, iv]
+      encrypted_data = aes.update(data) + aes.final
+      res = Base64.strict_encode64( encrypted_data )
+      return [res, Base64.strict_encode64(iv)]
     end
 
   end
