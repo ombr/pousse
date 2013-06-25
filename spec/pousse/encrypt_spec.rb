@@ -7,17 +7,10 @@ describe Pousse do
     describe '#encrypt' do
       it 'encrypt and decrypt a 32 chars string' do
         source = 'Here is some data for the coding'
-        enc = Encrypt::encrypt('superkey', 'a2xhcgAAAAAAAAAA', source)
-        puts enc
-        dec = Encrypt::decrypt('superkey', 'a2xhcgAAAAAAAAAA', enc)
-        dec.should == source
-      end
-
-      it 'encrypt and decrypt a string' do
-        source = '["test"]'
-        enc = Encrypt::encrypt('superkey', 'a2xhcgAAAAAAAAAA', source)
-        dec = Encrypt::decrypt('superkey', 'a2xhcgAAAAAAAAAA', enc)
-        dec.should == source
+        key = 'superKey'
+        iv = '1234567890123456'
+        enc, iv = Encrypt::encrypt(key, iv, source)
+        enc.should == "rShSmqpB/ILClbRl82HqFFtoj6zEKU1FSqG0uykYFE2yPsVAquddl8981JEf\nvZwp\n"
       end
     end
 
