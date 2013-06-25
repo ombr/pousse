@@ -17,8 +17,8 @@ describe Pousse::RedisDelivery do
 
     let :mail do
       stub(
-          to: 'everyone',
-          body: 'alert("Générale !");'
+          to: ['everyone'],
+          body: stub(decoded: 'alert("Générale !");')
         )
     end
 

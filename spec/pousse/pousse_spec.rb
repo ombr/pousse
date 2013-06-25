@@ -35,9 +35,19 @@ describe Pousse do
         .with('everybody',  'alert("Générale !");')
       mailer.send_alert.deliver
     end
-
   end
 
+  describe "#js" do
+    it 'Should return some javascript' do
+      require 'v8'
+      script = Pousse::js(['test'], 'http://your-poussette-server.com', 'your secret')
+      cxt = V8::Context.new
+      expect {
+        # Javascript syntax should be valid.
+        cxt.eval( "test = function(){ #{script} }")
+      }.to_not raise_exception
+    end
+  end
 
   describe '#configure' do
     it 'accept redis_configuration' do

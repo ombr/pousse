@@ -28,15 +28,9 @@ end
 Add this line to your layout :
 
 ```
-<div data-pousse="<%= Pousse::layout([:everybody]) %>">
+<script><%= Pousse::js([:everybody], [server], [secret]) %></script>
 ```
 
-Include the javascript :
-
-```
-//require pousse
-
-```
 
 Create a new mailer in app/mailer/pousse.rb
 ```
@@ -44,16 +38,22 @@ class AlertMailer < Pousse::Mailer
   def send_alert
     mail(
       to: 'everybody',
-      body: 'alert("Hello World !")'
+      body: 'alert("Hello World !");'
     )
   end
 end
 ```
 
+### Your node server on heroku :
+
+```
+git clone ...
+heroku ...
+```
 
 ### TODO :
 
-Should add some logging when redis is not available.
+- Should add some logging when redis is not available.
 
 ## Contributing
 
