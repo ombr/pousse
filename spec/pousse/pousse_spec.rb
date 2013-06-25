@@ -81,6 +81,7 @@ describe Pousse do
   describe '#configure' do
     it 'accept redis_configuration' do
       Pousse::configure do |config|
+        #config.should be instance_of Pousse::Configuration
         config.redis = {}
       end
     end

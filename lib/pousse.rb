@@ -18,6 +18,7 @@ module Pousse
 
     attr_accessor :configuration
 
+
     def configuration
       @configuration ||= Configuration.new
     end
@@ -32,6 +33,10 @@ module Pousse
       secret ||= configuration.secret
       raise 'You should configure your secret or specify it.' if secret == nil
       token, iv = Pousse::Crypt.encrypt(channels.to_json, secret)
+      puts "*"*1000
+      puts "TOKEN : #{token}"
+      puts "IV : #{iv}"
+      puts "SECRET : #{secret}"
       return ERB.new(File.read(TEMPLATE_MIN)).result(binding)
     end
 
