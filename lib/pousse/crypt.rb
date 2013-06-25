@@ -24,7 +24,7 @@ module Pousse
       require 'openssl/cipher'
       require 'openssl/digest'
 
-      iv ||= rand.to_s
+      iv ||= Base64.encode64(rand.to_s).gsub("\n",'')
       aes = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
       aes.encrypt
       aes.key = Digest::SHA256.digest(key)
