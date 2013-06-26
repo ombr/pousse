@@ -23,5 +23,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency('redis', '>= 3.0.4')
   spec.add_dependency('actionmailer', '>= 3.2.13')
 
-  spec.files = `git ls-files`.split("\n")
 end
