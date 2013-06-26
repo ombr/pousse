@@ -27,11 +27,13 @@ module Pousse
       yield configuration
     end
 
-    def js(channels, server, secret = nil)
+    def js(channels, server = nil, secret = nil)
       require 'erb'
       require 'json'
       secret ||= configuration.secret
       raise 'You should configure your secret or specify it.' if secret == nil
+      server ||= configuration.server
+      raise 'You should configure your secret or specify it.' if server == nil
       token, iv = Pousse::Crypt.encrypt(channels.to_json, secret)
       return ERB.new(File.read(TEMPLATE_MIN)).result(binding)
     end
