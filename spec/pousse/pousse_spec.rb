@@ -81,14 +81,9 @@ describe Pousse do
   describe '#configure' do
     it 'accept redis_configuration' do
       Pousse::configure do |config|
+        #config.should be instance_of Pousse::Configuration
         config.redis = {}
       end
-    end
-  end
-
-  describe '#send' do
-    it 'render and send a js message' do
-      #Pousse::pousse('test', 'mytemplate')
     end
   end
 
