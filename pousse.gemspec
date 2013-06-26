@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Pousse::VERSION
   spec.authors       = ["Julien Lerpscher", "Luc Boissaye"]
   spec.email         = ["julien@studyka.com", "luc@studyka.com"]
-  spec.description   = %q{Pousse, simple realtime for rails applications}
+  spec.description   = %q{Add Realtime to your application}
   spec.summary       = %q{Pousse, simple realtime for rails applications}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/Studyka/pousse"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
