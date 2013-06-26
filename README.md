@@ -55,6 +55,7 @@ heroku ...
 
 - Should add some logging when redis is not available.
 - Should add some spec for the configuration.
+- Should try again every 30 second or something when the poussette server is offline.
 
 ## Contributing
 
