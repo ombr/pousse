@@ -1,7 +1,7 @@
 # Pousse
 
 [![Build Status](https://travis-ci.org/Studyka/pousse.png?branch=master)](https://travis-ci.org/Studyka/pousse)
-
+[![Dependency Status](https://gemnasium.com/Studyka/pousse.png)](https://gemnasium.com/Studyka/pousse)
 TODO: Write a gem description
 
 ## Installation
