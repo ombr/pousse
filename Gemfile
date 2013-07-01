@@ -10,5 +10,6 @@ end
 
 group :test do
   gem 'rspec'
+  gem 'coveralls', require: false
   gem 'therubyracer', require: 'v8'
 end
