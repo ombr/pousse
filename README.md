@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Studyka/pousse.png?branch=master)](https://travis-ci.org/Studyka/pousse)
 [![Dependency Status](https://gemnasium.com/Studyka/pousse.png)](https://gemnasium.com/Studyka/pousse)
+[![Code Climate](https://codeclimate.com/github/Studyka/pousse.png)](https://codeclimate.com/github/Studyka/pousse)
+
 TODO: Write a gem description
 
 ## Installation
