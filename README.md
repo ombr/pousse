@@ -7,7 +7,7 @@
 [![Dependency Status](https://gemnasium.com/Studyka/pousse.png)](https://gemnasium.com/Studyka/pousse)
 [![Code Climate](https://codeclimate.com/github/Studyka/pousse.png)](https://codeclimate.com/github/Studyka/pousse)
 
-TODO: Write a gem description
+Pousse enables you to add realtime to any rails application by sending javascript to users or group of users.
 
 ## Installation
 
@@ -29,13 +29,21 @@ Create an initializer config/initializer/pousse.rb
 
 ```
 Pousse::configure do |config|
+  config.server = ''
+  config.secret = ''
+  config.redis = {
+    host: '',
+    port: '',
+    password: '',
+    thread_safe: true
+  } 
 end
 ```
 
 Add this line to your layout :
 
 ```
-<script><%= Pousse::js([:everybody], [server], [secret]) %></script>
+<script><%= Pousse::js([:everybody]) %></script>
 ```
 
 
