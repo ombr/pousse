@@ -59,11 +59,15 @@ class PousseMailer < Pousse::Mailer
 end
 ```
 
-### Your node server on heroku :
+### Install your Poussette node server on heroku:
 
 ```
-git clone ...
-heroku ...
+git clone git@github.com:Studyka/poussette.git
+cd poussette
+heroku create <your-app>
+heroku config:set SECRET=poussette # Used as encryption key
+heroku addons:add redistogo
+git push heroku master
 ```
 
 ### TODO :
