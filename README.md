@@ -43,7 +43,7 @@ end
 Add this line to your layout :
 
 ```
-<script><%= Pousse::js([:everybody]) %></script>
+<%= javascript_tag Pousse::js([:everybody]) %>
 ```
 
 
