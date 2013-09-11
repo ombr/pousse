@@ -47,9 +47,9 @@ Add this line to your layout :
 ```
 
 
-Create a new mailer in app/mailer/pousse.rb
+Create a new mailer in app/mailer/pousse_mailer.rb
 ```
-class AlertMailer < Pousse::Mailer
+class PousseMailer < Pousse::Mailer
   def send_alert
     mail(
       to: 'everybody',
