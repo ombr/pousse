@@ -27,6 +27,16 @@ Or install it yourself as:
 
 Create an initializer config/initializer/pousse.rb
 
+If you are using Heroku with RedisToGo:
+```
+Pousse::configure do |config|
+    config.server = ''
+    config.secret = ''
+    uri = URI.parse(ENV['REDISTOGO_URL'])
+    config.redis = { host: uri.host, port: uri.port, password: uri.password } 
+end
+```
+else:
 ```
 Pousse::configure do |config|
   config.server = ''
@@ -34,8 +44,7 @@ Pousse::configure do |config|
   config.redis = {
     host: '',
     port: '',
-    password: '',
-    thread_safe: true
+    password: ''
   } 
 end
 ```
