@@ -45,12 +45,12 @@ Set an envirnoment variable `REDISTOGO_URL` corresponding to the url previously 
 ### If you are using Heroku with RedisToGo:
 ```
 Pousse::configure do |config|
-    config.server = ENV['POUSSETTE_SERVER']
-    config.secret = ENV['POUSSE_SECRET']
-    if ENV['REDISTOGO_URL'].present?
-        uri = URI.parse(ENV['REDISTOGO_URL'])
-        config.redis = { host: uri.host, port: uri.port, password: uri.password }
-    end
+  config.server = ENV['POUSSETTE_SERVER']
+  config.secret = ENV['POUSSE_SECRET']
+  if ENV['REDISTOGO_URL'].present?
+    uri = URI.parse(ENV['REDISTOGO_URL'])
+    config.redis = { host: uri.host, port: uri.port, password: uri.password }
+  end
 end
 ```
 ### else (without Heroku):
