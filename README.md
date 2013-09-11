@@ -42,7 +42,7 @@ Create an initializer config/initializer/pousse.rb
 
 Set an envirnoment variable `REDISTOGO_URL` corresponding to the url previously greped
 
-If you are using Heroku with RedisToGo:
+### If you are using Heroku with RedisToGo:
 ```
 Pousse::configure do |config|
     config.server = ENV['POUSSETTE_SERVER']
@@ -53,7 +53,7 @@ Pousse::configure do |config|
     end
 end
 ```
-else:
+### else (without Heroku):
 ```
 Pousse::configure do |config|
   config.server = ''
