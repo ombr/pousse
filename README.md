@@ -69,6 +69,7 @@ end
 Add this line to your layout :
 
 ```
+# Everybody is your channel
 <%= javascript_tag Pousse::js([:everybody]) %>
 ```
 
