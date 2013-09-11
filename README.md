@@ -29,11 +29,15 @@ Create an initializer config/initializer/pousse.rb
 
 If you are using Heroku with RedisToGo:
 ```
+
+
 Pousse::configure do |config|
-    config.server = ''
-    config.secret = ''
-    uri = URI.parse(ENV['REDISTOGO_URL'])
-    config.redis = { host: uri.host, port: uri.port, password: uri.password } 
+    config.server = ENV['POUSSETTE_SERVER']
+    config.secret = ENV['POUSSE_SECRET']
+    if ENV['REDISTOGO_URL'].present?
+        uri = URI.parse(ENV['REDISTOGO_URL'])
+        config.redis = { host: uri.host, port: uri.port, password: uri.password }
+    end
 end
 ```
 else:
