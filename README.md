@@ -23,14 +23,27 @@ Or install it yourself as:
 
     $ gem install pousse
 
+### Install your Poussette node server on heroku:
+
+```
+git clone git@github.com:Studyka/poussette.git
+cd poussette
+heroku create <your-app>
+heroku config:set POUSSE_SECRET=yoursecret # Used as encryption key
+heroku addons:add redistogo
+git push heroku master
+heroku config | grep REDISTOGO_URL # This url is needed in the pousse initializer below
+```
+
 ## Usage
+
 
 Create an initializer config/initializer/pousse.rb
 
+Set an envirnoment variable `REDISTOGO_URL` corresponding to the url previously greped
+
 If you are using Heroku with RedisToGo:
 ```
-
-
 Pousse::configure do |config|
     config.server = ENV['POUSSETTE_SERVER']
     config.secret = ENV['POUSSE_SECRET']
@@ -70,17 +83,6 @@ class PousseMailer < Pousse::Mailer
     )
   end
 end
-```
-
-### Install your Poussette node server on heroku:
-
-```
-git clone git@github.com:Studyka/poussette.git
-cd poussette
-heroku create <your-app>
-heroku config:set POUSSE_SECRET=yoursecret # Used as encryption key
-heroku addons:add redistogo
-git push heroku master
 ```
 
 ### TODO :
