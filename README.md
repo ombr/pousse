@@ -45,7 +45,7 @@ Set an envirnoment variable `REDISTOGO_URL` corresponding to the url previously 
 ### If you are using Heroku with RedisToGo:
 ```
 Pousse::configure do |config|
-  config.server = ENV['POUSSETTE_SERVER']
+  config.server = ENV['POUSSETTE_SERVER'] # Warning: You must specify the port in development mode (eg: http://mypousssette.herokuapp.com:80)
   config.secret = ENV['POUSSE_SECRET']
   if ENV['REDISTOGO_URL'].present?
     uri = URI.parse(ENV['REDISTOGO_URL'])
