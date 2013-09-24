@@ -3,14 +3,14 @@ require 'spec_helper'
 
 describe Pousse::RedisDelivery do
 
-  let :redis do
-   Pousse::RedisDelivery.new {} 
+  subject do
+   Pousse::RedisDelivery.new {}
   end
 
   describe '#deliver!' do
 
     let :redis_instance do
-      redis_instance = stub()
+      redis_instance = stub(quit: true)
       Redis.stub(new: redis_instance)
       redis_instance
     end
@@ -26,14 +26,26 @@ describe Pousse::RedisDelivery do
       redis_instance
         .should_receive(:publish)
         .with('everyone',  'alert("Générale !");')
-      redis.deliver!(mail)
+      subject.deliver!(mail)
     end
 
     it 'does not fail when redis can not connect' do
       redis_instance.should_receive :publish do
         raise Redis::CannotConnectError.new 'Error connecting to Redis on 127.0.0.1:6379 (ECONNREFUSED)'
       end
-      expect{ redis.deliver!(mail) }.to_not raise_error
+      expect{ subject.deliver!(mail) }.to_not raise_error
+    end
+
+    it 'disconnect after sending' do
+      redis_instance.should_receive(:quit)
+      subject.deliver!(mail)
+    end
+
+    it 'does not crash if Redis.new raise an error' do
+      Redis.should_receive(:new) do
+        raise Redis::CannotConnectError.new 'Error connecting to Redis on 127.0.0.1:6379 (ECONNREFUSED)'
+      end
+      subject.deliver!(mail)
     end
   end
 end

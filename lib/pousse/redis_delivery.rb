@@ -7,6 +7,7 @@ module Pousse
     end
 
     def deliver!(mail)
+      redis = nil
       begin
         redis = Redis.new @redis_config
         mail.to.each do |to|
@@ -15,6 +16,8 @@ module Pousse
       rescue Exception => e
         #TODO: Use a real logguer ??
         puts "NOTIFICATION NOT DELIVERED: #{e.message}"
+      ensure
+        redis.quit unless redis.nil?
       end
     end
   end
