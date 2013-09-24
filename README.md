@@ -66,7 +66,7 @@ Pousse::configure do |config|
 end
 ```
 
-Add this line to your layout :
+Add this line to your layout:
 
 ```
 # Everybody is your channel
@@ -74,7 +74,7 @@ Add this line to your layout :
 ```
 
 
-Create a new mailer in app/mailer/pousse_mailer.rb
+Create a new mailer in `app/mailer/pousse_mailer.rb`
 ```
 class PousseMailer < Pousse::Mailer
   def send_alert
@@ -86,7 +86,14 @@ class PousseMailer < Pousse::Mailer
 end
 ```
 
-### TODO :
+## Testing:
+
+Add the following line in your `config/environments/test.rb`:
+```
+Pousse::Mailer.delivery_method = :test
+```
+
+### TODO:
 
 - Should add some logging when redis is not available.
 - Should add some spec for the configuration.
