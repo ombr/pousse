@@ -14,11 +14,11 @@ describe Pousse do
             body: 'alert("Générale !");'
           )
         end
-      end 
+      end
     end
 
     let :redis_instance do
-      redis_instance = stub()
+      redis_instance = stub(quit: true)
       Redis.stub(new: redis_instance)
       redis_instance
     end
