@@ -23,6 +23,20 @@ describe Pousse do
       redis_instance
     end
 
+
+    it 'uses default from' do
+      mailer.send_alert.from.should == ['pousse@pousse.pousse']
+    end
+
+    it 'uses delivery method' do
+      mailer.send_alert.delivery_method.should be_an_instance_of Pousse::RedisDelivery
+    end
+
+    it 'delivery method can be overwritten' do
+      mailer.delivery_method = :test
+      mailer.send_alert.delivery_method.should be_an_instance_of Mail::TestMailer
+    end
+
     it 'provide Pousse::Mailer' do
       expect{
         Class.new Pousse::Mailer

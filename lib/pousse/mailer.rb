@@ -1,5 +1,6 @@
 module Pousse
   class Mailer < ActionMailer::Base
-    default delivery_method: Pousse::RedisDelivery
+    self.delivery_method = Pousse::RedisDelivery
+    default from: 'pousse@pousse.pousse'
   end
 end
