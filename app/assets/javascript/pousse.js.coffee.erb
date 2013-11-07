@@ -3,9 +3,9 @@ async = (u, c) ->
   script.async = true
   script.src = u
   other = document.getElementsByTagName('script')[0]
-  script.addEventListener "load", ((e) ->
-    c null, e
-  ), false
+  script.onload = script.onreadystatechange=(e)->
+    if !this.readyState or this.readyState == 'loaded' or this.readyState == 'complete'
+      c(null, e)
   other.parentNode.insertBefore(script, other)
 async('<%= server %>/socket.io/socket.io.js', ()->
   socket = io.connect('<%= server %>')
